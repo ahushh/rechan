@@ -15,6 +15,12 @@ defmodule RechanWeb.FallbackController do
   def call(conn, {:error, :not_found}) do
     conn
     |> put_status(:not_found)
-    |> render(RechanWeb.ErrorView, :"404")
+    |> render(RechanWeb.ErrorView, "404.json")
   end
+
+#  def call(conn, {:error, :not_found}) do
+#    conn
+#    |> put_status(:not_found)
+#    |> render(RechanWeb.ErrorView, :"404")
+#  end
 end

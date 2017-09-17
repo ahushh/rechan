@@ -45,6 +45,17 @@ defmodule Rechan.Posts do
   end
 
   @doc """
+  Gets a single post.
+
+  """
+  def get_post(id) do
+    case Repo.get(Post, id) do
+      nil -> {:error, :not_found}
+      %Post{} = post -> {:ok, load_children post}
+    end
+  end
+
+  @doc """
   Creates a post.
 
   ## Examples
