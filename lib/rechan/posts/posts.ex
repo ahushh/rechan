@@ -57,10 +57,14 @@ defmodule Rechan.Posts do
 
   """
   def create_post(attrs \\ %{}) do
-    %Post{}
+    post = %Post{}
     |> Post.changeset(attrs)
     |> Repo.insert()
-    |> (fn({status, post}) -> {status, post |> Repo.preload(:children)} end).()
+    case post do
+      {:ok, post} -> {:ok, post |> Repo.preload(:children)}
+      default -> default
+    end
+
   end
 
   @doc """

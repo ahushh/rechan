@@ -17,6 +17,7 @@ defmodule Rechan.Posts.Post do
     post
     |> cast(attrs, [:body, :parent_id])
     |> validate_required([:body])
+    |> foreign_key_constraint(:parent_id)
   end
 
 end
