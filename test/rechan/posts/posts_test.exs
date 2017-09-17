@@ -29,9 +29,24 @@ defmodule Rechan.PostsTest do
       assert Posts.get_post!(post.id) == post
     end
 
+    test "get_post/1 returns the post with given id" do
+      post = post_fixture()
+      assert Posts.get_post(post.id) == {:ok, post}
+    end
+
+    test "get_post/1 returns the error if post doesn't exist" do
+      assert Posts.get_post(2) == {:error, :not_found}
+    end
+
     test "create_post/1 with valid data creates a post" do
       assert {:ok, %Post{} = post} = Posts.create_post(@valid_attrs)
       assert post.body == "some body"
+    end
+
+    test "create_post/1 with valid data creates a child post" do
+      {:ok, %Post{} = post} = Posts.create_post(@valid_attrs)
+      assert {:ok, %Post{} = child_post} = Posts.create_post(Map.put(@valid_attrs, :parent_id, post.id))
+      assert child_post.parent_id == post.id
     end
 
     test "create_post/1 with invalid data returns error changeset" do
