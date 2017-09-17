@@ -20,7 +20,8 @@ defmodule RechanWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", RechanWeb do
-  #   pipe_through :api
-  # end
+   scope "/api", RechanWeb do
+     pipe_through :api
+     resources "/posts", PostController, exclude: [:edit, :new, :delete]
+   end
 end
