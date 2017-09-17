@@ -33,10 +33,10 @@ defmodule RechanWeb.PostController do
 
 
   def update(conn, %{"id" => id, "post" => post_params}) do
-    post = Posts.get_post!(id)
-
-    with {:ok, %Post{} = post} <- Posts.update_post(post, post_params) do
-      render(conn, "show.json", post: post)
+    with {:ok, %Post{} = post} <- Posts.get_post(id) do
+      with {:ok, %Post{} = post} <- Posts.update_post(post, post_params) do
+        render(conn, "show.json", post: post)
+      end
     end
   end
 
