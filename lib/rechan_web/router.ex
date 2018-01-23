@@ -11,6 +11,8 @@ defmodule RechanWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    resources "/threads", RechanWeb.Api.ThreadController
+    resources "/posts", RechanWeb.Api.PostController
   end
 
   scope "/", RechanWeb do
