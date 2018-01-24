@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d9b1e7fa-8a85-472e-85e0-a7a4250260c4" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/lib/rechan/board/board.ex" afterPath="$PROJECT_DIR$/lib/rechan/board/board.ex" />
-      <change beforePath="$PROJECT_DIR$/lib/rechan/repo.ex" afterPath="$PROJECT_DIR$/lib/rechan/repo.ex" />
-      <change beforePath="$PROJECT_DIR$/lib/rechan_web/controllers/api/thread_controller.ex" afterPath="$PROJECT_DIR$/lib/rechan_web/controllers/api/thread_controller.ex" />
-      <change beforePath="$PROJECT_DIR$/mix.exs" afterPath="$PROJECT_DIR$/mix.exs" />
-      <change beforePath="$PROJECT_DIR$/mix.lock" afterPath="$PROJECT_DIR$/mix.lock" />
-      <change beforePath="$PROJECT_DIR$/priv/repo/seeds.exs" afterPath="$PROJECT_DIR$/priv/repo/seeds.exs" />
+      <change beforePath="$PROJECT_DIR$/lib/rechan_web/views/api/thread_view.ex" afterPath="$PROJECT_DIR$/lib/rechan_web/views/api/thread_view.ex" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -259,7 +256,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11347000" />
+    <option name="totallyTimeSpent" value="11354000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
