@@ -56,11 +56,15 @@ defmodule Rechan.Board do
 
   """
   def create_thread(attrs \\ %{}) do
-    {:ok, %Thread{id: id}} = %Thread{}
+    {:ok, thread} = %Thread{}
     |> Thread.changeset(attrs)
     |> Repo.insert()
-    Map.put(attrs, :thread_id, id)
+    Map.put(attrs, "thread_id", thread.id)
     |> create_post
+    thread_preloaded = Thread
+    |> Repo.get(thread.id)
+    |> Repo.preload(:posts)
+    {:ok, thread_preloaded}
   end
 
   @doc """

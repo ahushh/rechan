@@ -11,6 +11,6 @@ defmodule RechanWeb.Api.ThreadView do
   end
 
   def render("thread.json", %{thread: thread}) do
-    %{id: thread.id}
+    %{id: thread.id, posts: render_many(thread.posts, RechanWeb.Api.PostView, "post.json")}
   end
 end
