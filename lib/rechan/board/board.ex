@@ -19,7 +19,7 @@ defmodule Rechan.Board do
   """
   def list_threads(params \\ %{page: 1}) do
     posts_query = from p in Rechan.Board.Post, limit: 10
-    (from t in Thread, preload: [posts: ^posts_query])
+    from( t in Thread, preload: [posts: ^posts_query], order_by: [desc: :bumped] )
     |> Rechan.Repo.paginate(params)
   end
 
@@ -59,8 +59,10 @@ defmodule Rechan.Board do
     {:ok, thread} = %Thread{}
     |> Thread.changeset(attrs)
     |> Repo.insert()
+
     Map.put(attrs, "thread_id", thread.id)
     |> create_post
+
     thread_preloaded = Thread
     |> Repo.get(thread.id)
     |> Repo.preload(:posts)
@@ -83,6 +85,16 @@ defmodule Rechan.Board do
     thread
     |> Thread.changeset(attrs)
     |> Repo.update()
+  end
+
+  @doc """
+  Bumps a thread.
+
+  """
+  def bump_thread(id) do
+    thread = get_thread!(id)
+    now = NaiveDateTime.utc_now()
+    update_thread thread, %{bumped: now}
   end
 
   @doc """
@@ -158,6 +170,9 @@ defmodule Rechan.Board do
 
   """
   def create_post(attrs \\ %{}) do
+    if attrs.thread_id do
+      bump_thread attrs.thread_id
+    end
     %Post{}
     |> Post.changeset(attrs)
     |> Repo.insert()
