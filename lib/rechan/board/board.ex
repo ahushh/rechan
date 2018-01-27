@@ -17,9 +17,10 @@ defmodule Rechan.Board do
       [%Thread{}, ...]
 
   """
-  def list_threads do
+  def list_threads(params \\ %{page: 1}) do
     posts_query = from p in Rechan.Board.Post, limit: 10
-    Repo.all from t in Thread, preload: [posts: ^posts_query]
+    (from t in Thread, preload: [posts: ^posts_query])
+    |> Rechan.Repo.paginate(params)
   end
 
   @doc """

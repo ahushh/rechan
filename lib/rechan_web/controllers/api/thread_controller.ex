@@ -6,8 +6,8 @@ defmodule RechanWeb.Api.ThreadController do
 
   action_fallback RechanWeb.FallbackController
 
-  def index(conn, _params) do
-    threads = Board.list_threads()
+  def index(conn, params) do
+    %{entries: threads} = Board.list_threads(params)
     render(conn, "index.json", threads: threads)
   end
 
